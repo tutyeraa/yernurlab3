@@ -1,0 +1,2 @@
+## Profile WebSite
+In previous semester, I took a WebProgramming course and learned several useful skills. I learned how to create a website design, write HTML code, set styles using CSS code and, of course, JavaScript. This will help me create high-quality and convenient websites in the future.
