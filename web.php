@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
@@ -24,7 +25,8 @@ Route::get('post/create', function(){
      'body'=>'IT IS MY LAB4 FROM LARAVEL, I USE TO MIGRATION AND MODEL'
    ]);
 });
-Route::get('post', function(){
-   $posts=Post::find(1);
-   return $posts->body;
+Route::get('post', [PostController::class, 'index']);
+Route::get('post2/create', function(){
+   return view('blog.create');
 });
+Route::post('blog/create', [PostController::class, 'store'])->name('add-post');
