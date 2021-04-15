@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
@@ -18,7 +20,9 @@ use App\Models\Post;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/profile', function(){
+  return view('profile');
+});
 Route::get('post/create', function(){
    DB::table('post')->insert([
      'tittle'=>'My lab4',
@@ -32,3 +36,16 @@ Route::get('post2/create', function(){
 Route::post('blog/create', [PostController::class, 'store'])->name('add-post');
 
 Route::get('post/{id}', [PostController::class, 'get_id']);
+
+//Sending mail
+Route::post('/mail', [MailController::class, 'send'])->name('send');
+
+//Upload func
+Route::get('/upload', [UploadController::class, 'index']);
+Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
+
+//localization with switches
+Route::get('lang/{lang}', function($locale){
+   session()->put('locale', $locale);
+   return Redirect()->back();
+});
